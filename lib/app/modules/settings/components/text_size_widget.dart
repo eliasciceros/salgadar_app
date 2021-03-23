@@ -68,7 +68,7 @@ class TextSizeSlider extends StatelessWidget {
                 },
               ),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Text('Tamanho padrão')),

@@ -37,4 +37,6 @@ class ConnectivityUtils {
             'Ocorreu um erro inesperado no carregamento. Por favor, tente novamente.',
         buttonConfirmationLabel: 'ok');
   }
+
+
 }

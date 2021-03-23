@@ -87,8 +87,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                   ),
                   Container(
                     child: ListTile(
-                      title: RaisedButton(
-                        textColor: Colors.black,
+                      title: ElevatedButton(
                         child: Text('Entrar'),
                         onPressed: () async {
                           if (controller.formKey.currentState.validate()) {
@@ -108,7 +107,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
           Spacer(),
           Container(
             child: Center(
-              child: FlatButton(
+              child: TextButton(
                 onPressed: () async {
                   await controller.initializeHomePage();
                   await Modular.link.pushNamed(SignUpPage.routeName,

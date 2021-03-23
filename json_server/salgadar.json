@@ -1,5 +1,13 @@
 {
   "users": [
+    {
+      "id": 1,
+      "username": "asuka",
+      "password": "1",
+      "name": "asuka",
+      "birthday": "30/09/1990",
+      "email": "a@suka.com"
+    }
   ],
   "items": [
     {
@@ -165,8 +173,6 @@
       "price": 4
     }
   ],
-  "carts": [
-  ],
-  "purchases": [
-  ]
+  "carts": [],
+  "purchases": []
 }

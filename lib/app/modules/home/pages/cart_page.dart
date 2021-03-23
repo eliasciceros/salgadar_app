@@ -91,7 +91,7 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
             ListTile(
-                title: RaisedButton(
+                title: ElevatedButton(
                     child: Text("Finalizar compra!"),
                     onPressed: cartController.userCart.items.isNotEmpty
                         ? () async {

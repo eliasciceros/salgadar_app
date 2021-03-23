@@ -16,7 +16,7 @@ showAlertDialog(
           title: Text(title),
           content: Text(message),
           actions: [
-            FlatButton(
+            TextButton(
               child: Text(buttonConfirmationLabel),
               onPressed: () {
                 Modular.to.pop();
@@ -37,11 +37,11 @@ showAConfirmationDialog({BuildContext context, String title, String message,
         title: Text(title),
         content: Text(message),
         actions: [
-          FlatButton(
+          TextButton(
             child: Text("Sim"),
             onPressed: () async => await yesFunction(),
           ),
-          FlatButton(
+          TextButton(
             child: Text("Não"),
             onPressed: () async => await noFunction(),
           ),

@@ -113,7 +113,6 @@ class CartController extends ChangeNotifier {
 
   /// Salva um [Cart].
   saveCart() async {
-    // TODO: IF HAS CONNECTION
     // Insere no server, resgatando id.
     await cartAPIDao.postCart(userCart).then((value) async {
       userCart.id = value;

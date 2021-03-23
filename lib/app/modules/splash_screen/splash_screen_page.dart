@@ -35,7 +35,9 @@ class _SplashScreenPageState
                 Icons.fastfood,
                 size: MediaQuery.of(context).size.width * 0.5,
               ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               Center(child: Text('Bem vindo ao Salgadar App!')),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               Center(
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),

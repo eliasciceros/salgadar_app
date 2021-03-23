@@ -152,7 +152,7 @@ class _SignUpPageState extends State<SignUpPage> {
               height: 10,
             ),
             Container(
-              child: RaisedButton(
+              child: ElevatedButton(
                 child: Text('Finalizar cadastro'),
                 onPressed: () async {
                   await controller

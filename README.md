@@ -2,15 +2,15 @@
 Aplicativo móvel de loja virtual de salgados e fast foods.
 
 ## Versões
-1. Flutter: 1.22.5
+1. Flutter: 2.0.0
 2. Android SDK: 30.0.2
 3. Node.js: 14.15.3
 
 ## Instruções para execução no emulador
 Observações importantes para execução do aplicativo no emulador Android:
 1. Instalar o [Node.js](https://nodejs.org/en/download/).
-2. Abrir o terminal no diretório do arquivo servidor [salgadar.json](json_server/salgadar.json) e executar o seguinte comando de sistema:
-- json-server --watch salgadar.json
+2. Abrir no terminal o diretório do arquivo servidor [salgadar.json](json_server/salgadar.json) e executar o seguinte comando de sistema:
+  - json-server --watch salgadar.json
 
 ## Features
 O aplicativo possui as seguintes features:
@@ -33,8 +33,21 @@ O aplicativo possui as seguintes features:
 13. Configurações de Tema (Claro, escuro, alto contraste e definido pelo sistema) e tamanho da cor.
 14. Carregamento de dados com Splash Screen.
 15. Teste unitário do carrinho.
-  
-Observação: CRUD é um acrônimo para as quatro operações básicas para armazenamento persistente: cadastro (Create), leitura (Read), atualização (Update), e remoção (Delete).
+
+**Obs.:** CRUD é um acrônimo para as quatro operações básicas para armazenamento persistente: cadastro (Create), leitura (Read), atualização (Update), e remoção (Delete).
+
+### Padrões de Arquitetura/Projeto
+Foram utilizados neste aplicativo os seguintes Padrões de Arquitetura/Projeto:
+
+1. MVC (Model-View-Controller).
+2. DAO (Data Access Object).
+
+### Gerência de estado
+Foram utilizadas neste aplicativo as seguintes gerências de estado:
+
+1. ChangeNotifier
+2. ValueNotifier
+
 
 ## Screenshots
 Splash Screen              |  Tela inicial
@@ -71,3 +84,5 @@ As imagems dos itens foram retiradas do site [Unplash](https://unsplash.com/).
 ## Equipe desenvolvedora
 - Elias Cícero Moreira Guedes (Mentorado).
 - Israel Hudson Aragão Barbosa (Mentor).
+
+**Obs.:** Este aplicativo foi implementado durante o período de mentoria no Dell Academy e aprimorado, via fork, pelo próprio mentor após este período.
