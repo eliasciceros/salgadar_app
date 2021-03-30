@@ -10,7 +10,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="salgadar_app"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true" > <!-- allow HTTP connections for Android debug builds -->
+        android:usesCleartextTraffic="true" > <!-- allow HTTP connections for Android debug builds. Not Recommended for release build apks.-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

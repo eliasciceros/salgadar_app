@@ -6,13 +6,16 @@ import 'package:salgadar_app/app/shared/utils/consts.dart';
 class ItemAPIDao {
   /// Post - adiciona um [Item] e retorna [id] gerado.
   Future<int> postItem(Item item) async {
+    // Variaveis auxiliares
+    final url = Uri.parse(URL_ITEM);
+
     final headers = <String, String>{
       'Content-type': 'application/json',
       'Accept': 'application/json',
     };
 
     final body = jsonEncode(item.toJson());
-    final response = await http.post(URL_ITEM, body: body, headers: headers);
+    final response = await http.post(url, body: body, headers: headers);
     final jsonResponse = jsonDecode(response.body);
 
     return jsonResponse[ITEM_ID];
@@ -20,8 +23,12 @@ class ItemAPIDao {
 
   /// Put - atualiza um [Card].
   Future<Item> putItem(Item item) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_ITEM_NAME/${item.id}';
+    final url = Uri.http(AUTHORITY, path);
+
     final response = await http.put(
-      '$URL_ITEM/${item.id}',
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -38,7 +45,10 @@ class ItemAPIDao {
 
   /// Get - busca todos [Item].
   Future<List<Item>> getItems() async {
-    final response = await http.get(URL_ITEM);
+    // Variaveis auxiliares.
+    final url = Uri.parse(URL_ITEM);
+
+    final response = await http.get(url);
 
     // Caso sucesso.
     if (response.statusCode == 200) {
@@ -55,8 +65,12 @@ class ItemAPIDao {
 
   /// Delete - remove um [Item].
   Future<http.Response> deleteItem({int id}) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_ITEM_NAME/$id';
+    final url = Uri.http(AUTHORITY, path);
+
     final response = await http.delete(
-      '$URL_ITEM/$id',
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -67,7 +81,11 @@ class ItemAPIDao {
 
   /// Busca um [Item].
   Future<Item> getItem({int id}) async {
-    final response = await http.get("$URL_ITEM/$id");
+    // Variaveis auxiliares.
+    final path = '/$TABLE_ITEM_NAME/$id';
+    final url = Uri.http(AUTHORITY, path);
+
+    final response = await http.get(url);
 
     // Caso sucesso
     if (response.statusCode == 200) {
@@ -79,9 +97,14 @@ class ItemAPIDao {
     }
   }
 
-  /// Verifica se contem [Item].
-  Future<bool> contains({int id}) async {
-    final response = await http.get("$URL_USER?$ITEM_ID=$id");
+  /// Verifica se o usuario contem [Item].
+  Future<bool> contains({int idItem}) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_USER_NAME';
+    final queryParameters = {ITEM_ID: '$idItem'};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso
     if (response.statusCode == 200) {
@@ -93,7 +116,12 @@ class ItemAPIDao {
 
   /// Get - busca todos [Item] por categoria.
   Future<List<Item>> getItemsByCategory({String category}) async {
-    final response = await http.get("$URL_ITEM?$ITEM_CATEGORY=$category");
+    // Variaveis auxiliares.
+    final path = '/$TABLE_ITEM_NAME';
+    final queryParameters = {ITEM_CATEGORY: category};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso.
     if (response.statusCode == 200) {
@@ -110,7 +138,12 @@ class ItemAPIDao {
 
   /// Get - busca todos [Item] por subcategoria.
   Future<List<Item>> getItemsBySubCategory({String subCategory}) async {
-    final response = await http.get("$URL_ITEM?$ITEM_SUBCATEGORY=$subCategory");
+    // Variaveis auxiliares.
+    final path = '/$TABLE_ITEM_NAME';
+    final queryParameters = {ITEM_SUBCATEGORY: subCategory};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso.
     if (response.statusCode == 200) {

@@ -22,6 +22,9 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -39,9 +42,6 @@ class _SideMenuWidgetState extends State<SideMenuWidget> {
                       child: Text('${userController.loggedUser?.name ?? ''}!')),
                 ),
               ],
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
             ),
           ),
           ListTile(

@@ -135,7 +135,7 @@ class ItemController extends ChangeNotifier {
 
   /// Converte uma imagem em URL para Base64.
   imageUrlTobase64(String url) async {
-    final response = await http.get(url);
+    final response = await http.get(Uri.parse(url));
     return base64Encode(response.bodyBytes);
   }
 }

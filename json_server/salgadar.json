@@ -7,6 +7,14 @@
       "name": "asuka",
       "birthday": "30/09/1990",
       "email": "a@suka.com"
+    },
+    {
+      "id": 2,
+      "username": "um",
+      "password": "1",
+      "name": "1",
+      "birthday": "01/01/1990",
+      "email": "1@1.com"
     }
   ],
   "items": [
@@ -173,6 +181,72 @@
       "price": 4
     }
   ],
-  "carts": [],
-  "purchases": []
+  "carts": [
+    {
+      "id": 1,
+      "items": [
+        {
+          "itemId": 1,
+          "cartId": 1,
+          "qtt": 6,
+          "itemPrice": 3
+        },
+        {
+          "itemId": 4,
+          "cartId": 1,
+          "qtt": 7,
+          "itemPrice": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "items": [
+        {
+          "itemId": 2,
+          "cartId": 2,
+          "qtt": 2,
+          "itemPrice": 1
+        },
+        {
+          "itemId": 3,
+          "cartId": 2,
+          "qtt": 1,
+          "itemPrice": 0.5
+        },
+        {
+          "itemId": 4,
+          "cartId": 2,
+          "qtt": 1,
+          "itemPrice": 3
+        },
+        {
+          "itemId": 1,
+          "cartId": 2,
+          "qtt": 1,
+          "itemPrice": 3
+        }
+      ]
+    }
+  ],
+  "purchases": [
+    {
+      "id": 1,
+      "userId": 2,
+      "cartId": 1,
+      "totalValue": 39,
+      "totalQtt": 13,
+      "date": "30/3/2021",
+      "isDeleted": 0
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "cartId": 2,
+      "totalValue": 8.5,
+      "totalQtt": 5,
+      "date": "30/3/2021",
+      "isDeleted": 0
+    }
+  ]
 }

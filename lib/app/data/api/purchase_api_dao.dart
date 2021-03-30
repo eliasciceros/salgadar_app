@@ -6,14 +6,16 @@ import 'package:salgadar_app/app/shared/utils/consts.dart';
 class PurchaseAPIDao {
   /// Post - adiciona um [Purchase].
   Future<int> postPurchase(Purchase purchase) async {
+    // Variaveis auxiliares
+    final url = Uri.parse(URL_PURCHASE);
+
     final headers = <String, String>{
       'Content-type': 'application/json',
       'Accept': 'application/json',
     };
 
     final body = jsonEncode(purchase.toJson());
-    final response =
-        await http.post(URL_PURCHASE, body: body, headers: headers);
+    final response = await http.post(url, body: body, headers: headers);
     final jsonResponse = jsonDecode(response.body);
 
     return jsonResponse[PURCHASE_ID];
@@ -21,8 +23,12 @@ class PurchaseAPIDao {
 
   /// Put - atualiza um [Card].
   Future<Purchase> putPurchase(Purchase purchase) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_PURCHASE_NAME/${purchase.id}';
+    final url = Uri.http(AUTHORITY, path);
+
     final response = await http.put(
-      '$URL_PURCHASE/${purchase.id}',
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -39,7 +45,10 @@ class PurchaseAPIDao {
 
   /// Get - busca todos [Purchase].
   Future<List<Purchase>> getPurchases() async {
-    final response = await http.get(URL_PURCHASE);
+    // Variaveis auxiliares.
+    final url = Uri.parse(URL_PURCHASE);
+
+    final response = await http.get(url);
 
     // Caso sucesso.
     if (response.statusCode == 200) {
@@ -62,8 +71,12 @@ class PurchaseAPIDao {
 
   /// Delete - remove um [Purchase].
   Future<http.Response> deletePurchase({int id}) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_PURCHASE_NAME/$id';
+    final url = Uri.http(AUTHORITY, path);
+
     final response = await http.delete(
-      '$URL_PURCHASE/$id',
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -74,7 +87,12 @@ class PurchaseAPIDao {
 
   /// Busca um [Purchase].
   Future<Purchase> getPurchase({int id}) async {
-    final response = await http.get("$URL_PURCHASE?$PURCHASE_ID=$id");
+    // Variaveis auxiliares.
+    final path = '/$TABLE_PURCHASE_NAME';
+    final queryParameters = {PURCHASE_ID: '$id'};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso
     if (response.statusCode == 200) {
@@ -88,8 +106,14 @@ class PurchaseAPIDao {
 
   /// Busca um [Purchase].
   Future<List<Purchase>> getUserPurchases({int userId, bool getDeleted}) async {
-    final url =
-        "${"$URL_PURCHASE?$PURCHASE_USERID=$userId"}${getDeleted ? '' : "&$PURCHASE_ISDELETED=0"}";
+    // Variaveis auxiliares.
+    final path = '/$TABLE_PURCHASE_NAME';
+    final queryParameters = {
+      PURCHASE_USERID: "$userId",
+      PURCHASE_ISDELETED: getDeleted ? "1" : "0"
+    };
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
     final response = await http.get(url);
 
     // Caso sucesso
@@ -107,9 +131,14 @@ class PurchaseAPIDao {
     }
   }
 
-  /// Verifica se contem [Purchase].
-  Future<bool> contains({int id}) async {
-    final response = await http.get("$URL_USER?$PURCHASE_ID=$id");
+  /// Verifica se usuario contem [Purchase].
+  Future<bool> contains({int idPurchase}) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_USER_NAME';
+    final queryParameters = {PURCHASE_ID: '$idPurchase'};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso
     if (response.statusCode == 200) {

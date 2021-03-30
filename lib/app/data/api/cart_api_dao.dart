@@ -6,13 +6,16 @@ import 'package:salgadar_app/app/shared/utils/consts.dart';
 class CartAPIDao {
   /// Post - adiciona um [Cart] e retorna [id] gerado.
   Future<int> postCart(Cart cart) async {
+    // Variaveis auxiliares
+    final url = Uri.parse(URL_CART);
+
     final headers = <String, String>{
       'Content-type': 'application/json',
       'Accept': 'application/json',
     };
 
     final body = jsonEncode(cart.toJson());
-    final response = await http.post(URL_CART, body: body, headers: headers);
+    final response = await http.post(url, body: body, headers: headers);
     final jsonResponse = jsonDecode(response.body);
 
     return jsonResponse[CART_ID];
@@ -20,8 +23,12 @@ class CartAPIDao {
 
   /// Put - atualiza um [Card].
   Future<Cart> putCart(Cart cart) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_CART_NAME/${cart.id}';
+    final url = Uri.http(AUTHORITY, path);
+
     final response = await http.put(
-      '$URL_CART/${cart.id}',
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -38,7 +45,10 @@ class CartAPIDao {
 
   /// Get - busca todos [Cart].
   Future<List<Cart>> getCarts() async {
-    final response = await http.get(URL_CART);
+    // Variaveis auxiliares.
+    final url = Uri.parse(URL_CART);
+
+    final response = await http.get(url);
 
     // Caso sucesso.
     if (response.statusCode == 200) {
@@ -55,8 +65,12 @@ class CartAPIDao {
 
   /// Delete - remove um [Cart].
   Future<http.Response> deleteCart({int id}) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_CART_NAME/$id';
+    final url = Uri.http(AUTHORITY, path);
+
     final response = await http.delete(
-      '$URL_CART/$id',
+      url,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -67,7 +81,12 @@ class CartAPIDao {
 
   /// Busca um [Cart].
   Future<Cart> getCart({id}) async {
-    final response = await http.get("$URL_CART?$CART_ID=$id");
+    // Variaveis auxiliares.
+    final path = '/$TABLE_CART_NAME';
+    final queryParameters = {CART_ID: '$id'};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso
     if (response.statusCode == 200) {
@@ -79,9 +98,14 @@ class CartAPIDao {
     }
   }
 
-  /// Verifica se contem [Cart].
-  Future<bool> contains({int id}) async {
-    final response = await http.get("$URL_USER?$CART_ID=$id");
+  /// Verifica se usuario contem [Cart].
+  Future<bool> contains({int idCart}) async {
+    // Variaveis auxiliares.
+    final path = '/$TABLE_USER_NAME';
+    final queryParameters = {CART_ID: '$idCart'};
+    final url = Uri.http(AUTHORITY, path, queryParameters);
+
+    final response = await http.get(url);
 
     // Caso sucesso
     if (response.statusCode == 200) {

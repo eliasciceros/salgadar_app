@@ -1,6 +1,12 @@
 // URL de conexao
-const URL_BASE = 'http://10.0.2.2:3000/'; // ip padrao do emulador AVD.
-//const URL_BASE = 'http://Seu.Ip:3000/'; // Seu ip.
+const IP_AVD_EMULATOR = '10.0.2.2'; // Default AVD emulator IP.
+const IP = IP_AVD_EMULATOR; // You can put your IP.
+const SCHEME = 'http';
+const PORT = '3000';
+const AUTHORITY = '$IP:$PORT';
+
+
+const URL_BASE = 'http://10.0.2.2:3000/';
 
 // Nomes das categorias
 const CATEGORY_FOOD = 'food';
