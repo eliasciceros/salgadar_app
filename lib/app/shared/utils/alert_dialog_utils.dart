@@ -17,10 +17,10 @@ showAlertDialog(
           content: Text(message),
           actions: [
             TextButton(
-              child: Text(buttonConfirmationLabel),
               onPressed: () {
                 Modular.to.pop();
               },
+              child: Text(buttonConfirmationLabel),
             ),
           ],
         );

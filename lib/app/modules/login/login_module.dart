@@ -5,26 +5,25 @@ import 'controllers/sign_up_page_controller.dart';
 import 'login_controller.dart';
 import 'login_page.dart';
 
-class LoginModule extends ChildModule {
+class LoginModule extends Module {
   @override
-  List<Bind> get binds => [
-        Bind((i) => LoginController()),
-        Bind((i) => SignUpPageController()),
-      ];
+  final List<Bind> binds = [
+    Bind.singleton((i) => LoginController()),
+    Bind.singleton((i) => SignUpPageController()),
+  ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(
-          Modular.initialRoute,
-          child: (_, args) => LoginPage(),
-        ),
-        ModularRouter(
-          SignUpPage.routeName,
-          child: (_, args) => SignUpPage(user: args.data.user),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-      ];
+  final List<ModularRoute> routes = [
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) => LoginPage(),
+    ),
+    ChildRoute(
+      SignUpPage.routeName,
+      child: (_, args) => SignUpPage(user: args.data.user),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+  ];
 
-  static Inject get to => Inject<LoginModule>.of();
   static const routeName = '/login';
 }

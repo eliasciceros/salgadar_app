@@ -5,26 +5,25 @@ import 'package:salgadar_app/app/modules/login/pages/sign_up_page.dart';
 import 'settings_controller.dart';
 import 'settings_page.dart';
 
-class SettingsModule extends ChildModule {
+class SettingsModule extends Module {
   @override
-  List<Bind> get binds => [
-        Bind((i) => SettingsController()),
-        Bind((i) => SignUpPageController()),
-      ];
+  final List<Bind> binds = [
+    Bind.singleton((i) => SettingsController()),
+    Bind.singleton((i) => SignUpPageController()),
+  ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(
-          Modular.initialRoute,
-          child: (_, args) => SettingsPage(),
-        ),
-        ModularRouter(
-          SignUpPage.routeName,
-          child: (_, args) => SignUpPage(user: args.data.user),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-      ];
+  final List<ModularRoute> routes = [
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) => SettingsPage(),
+    ),
+    ChildRoute(
+      SignUpPage.routeName,
+      child: (_, args) => SignUpPage(user: args.data.user),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+  ];
 
-  static Inject get to => Inject<SettingsModule>.of();
   static const routeName = '/settings';
 }

@@ -28,11 +28,12 @@ O aplicativo possui as seguintes features:
   - Cadastro e alteração de usuário.
   - Finalização de uma compra.
   - Remoção de uma compra.
-11. Animações com opacidade em cadastro/alteração de usuário, finalização de compra.
-12. Notificação Local após a finalização da compra.
-13. Configurações de Tema (Claro, escuro, alto contraste e definido pelo sistema) e tamanho da cor.
-14. Carregamento de dados com Splash Screen.
-15. Teste unitário do carrinho.
+11. Verificação de conexão com o JSON server no inicio do aplicativo.
+12. Animações com opacidade em cadastro/alteração de usuário, finalização de compra.
+13. Notificação Local após a finalização da compra.
+14. Configurações de Tema (Claro, escuro, alto contraste e definido pelo sistema) e tamanho da cor.
+15. Carregamento de dados com Splash Screen.
+16. Teste unitário do carrinho.
 
 **Obs.:** CRUD é um acrônimo para as quatro operações básicas para armazenamento persistente: cadastro (Create), leitura (Read), atualização (Update), e remoção (Delete).
 

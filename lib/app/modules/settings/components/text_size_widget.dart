@@ -1,3 +1,4 @@
+import 'package:builders/builders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -69,9 +70,6 @@ class TextSizeSlider extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Text('Tamanho padrão')),
               onPressed:
                   settings.fontSize == UserSettingsController.DEFAULT_FONT_SIZE
                       ? null
@@ -80,6 +78,9 @@ class TextSizeSlider extends StatelessWidget {
                               newFontSize:
                                   UserSettingsController.DEFAULT_FONT_SIZE);
                         },
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text('Tamanho padrão')),
             )
           ],
         ));

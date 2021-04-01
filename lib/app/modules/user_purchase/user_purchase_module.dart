@@ -4,29 +4,28 @@ import 'pages/detailed_purchase_page.dart';
 import 'user_purchase_controller.dart';
 import 'user_purchase_page.dart';
 
-class UserPurchaseModule extends ChildModule {
+class UserPurchaseModule extends Module {
   @override
-  List<Bind> get binds => [
-        Bind((i) => UserPurchaseController()),
-      ];
+  final List<Bind> binds = [
+    Bind.singleton((i) => UserPurchaseController()),
+  ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(
-          Modular.initialRoute,
-          child: (_, args) => UserPurchasePage(),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-        ModularRouter(
-          DetailedPurchasePage.routeName,
-          child: (_, args) => DetailedPurchasePage(
-            purchase: args.data.purchase,
-            key: args.data.key,
-          ),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-      ];
+  final List<ModularRoute> routes = [
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) => UserPurchasePage(),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+    ChildRoute(
+      DetailedPurchasePage.routeName,
+      child: (_, args) => DetailedPurchasePage(
+        purchase: args.data.purchase,
+        key: args.data.key,
+      ),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+  ];
 
-  static Inject get to => Inject<UserPurchaseModule>.of();
   static const routeName = '/purchase';
 }

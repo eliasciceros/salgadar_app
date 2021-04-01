@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
   void initState() {
+    super.initState();
     controller.initializeLoginPage();
   }
 
@@ -88,7 +89,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                   Container(
                     child: ListTile(
                       title: ElevatedButton(
-                        child: Text('Entrar'),
                         onPressed: () async {
                           if (controller.formKey.currentState.validate()) {
                             await controller.login(
@@ -97,6 +97,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                                 context: context);
                           }
                         },
+                        child: Text('Entrar'),
                       ),
                     ),
                   ),
@@ -110,7 +111,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
               child: TextButton(
                 onPressed: () async {
                   await controller.initializeHomePage();
-                  await Modular.link.pushNamed(SignUpPage.routeName,
+                  await Modular.to.pushNamed(SignUpPage.routeName,
                       arguments: SignUpPageArguments(user: null));
                 },
                 child: Text('Não é cadastrado? Cadastre-se aqui!'),

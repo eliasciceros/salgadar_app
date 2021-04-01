@@ -1,12 +1,9 @@
-// URL de conexao
+// Atributos de URL de conexao
 const IP_AVD_EMULATOR = '10.0.2.2'; // Default AVD emulator IP.
 const IP = IP_AVD_EMULATOR; // You can put your IP.
 const SCHEME = 'http';
 const PORT = '3000';
 const AUTHORITY = '$IP:$PORT';
-
-
-const URL_BASE = 'http://10.0.2.2:3000/';
 
 // Nomes das categorias
 const CATEGORY_FOOD = 'food';
@@ -33,7 +30,8 @@ const TABLE_CART_NAME = 'carts';
 const TABLE_ITEM_CART_NAME = 'items_cart';
 const TABLE_PURCHASE_NAME = 'purchases';
 
-// URL das tabelas (resources)
+// URL das tabelas (resources) para parse
+const URL_BASE = '$SCHEME://$AUTHORITY/';
 const URL_USER = URL_BASE + TABLE_USER_NAME;
 const URL_ITEM = URL_BASE + TABLE_ITEM_NAME;
 const URL_CART = URL_BASE + TABLE_CART_NAME;

@@ -25,9 +25,19 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
     return Slidable(
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
+      actions: <Widget>[
+        IconSlideAction(
+          caption: 'Excluir',
+          color: Colors.red,
+          icon: Icons.delete,
+          onTap: () async {
+            await _confirmateDelete(context: context);
+          },
+        ),
+      ],
       child: Card(
         child: ListTile(
-            onTap: () => Modular.link.pushNamed(DetailedPurchasePage.routeName,
+            onTap: () => Modular.to.pushNamed(DetailedPurchasePage.routeName,
                 arguments: DetailedPurchasePageArguments(
                     purchase: widget.purchase, key: UniqueKey())),
             title: SingleChildScrollView(
@@ -42,16 +52,6 @@ class _PurchaseWidgetState extends State<PurchaseWidget> {
                   'R\$: ${MathUtils.round(number: widget.purchase.totalValue, decimalPlaces: 2)}'),
             )),
       ),
-      actions: <Widget>[
-        IconSlideAction(
-          caption: 'Excluir',
-          color: Colors.red,
-          icon: Icons.delete,
-          onTap: () async {
-            await _confirmateDelete(context: context);
-          },
-        ),
-      ],
     );
   }
 

@@ -1,7 +1,10 @@
 import 'package:connectivity/connectivity.dart';
-import 'package:salgadar_app/app/shared/utils/alert_dialog_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import 'alert_dialog_utils.dart';
+import 'consts.dart';
 
 class ConnectivityUtils {
   /// Retorna a flag de conexao com internet.
@@ -18,8 +21,25 @@ class ConnectivityUtils {
     }
   }
 
+  /// Retorna uma flag para conexao com o JSON server.
+  static Future<bool> hasServerConnectivity(
+      {@required BuildContext context}) async {
+    // Auxiliary variables.
+    final url = Uri.parse(URL_BASE);
+
+    try {
+      await http.get(url);
+      // Success (statusCode = 200).
+      return true;
+    } catch (e) {
+      // Connection timed out (errno = 110).
+      serverNoConnectionErrorMessage(context: context);
+      return false;
+    }
+  }
+
   /// [AlertDialog] de falha na conexao.
-  static noConnectionMessage({BuildContext context}) {
+  static noConnectionMessage({@required BuildContext context}) {
     showAlertDialog(
         context: context,
         title: 'Falha na conexao com a internet!',
@@ -29,14 +49,24 @@ class ConnectivityUtils {
   }
 
   /// [AlertDialog] de erro no carregamento.
-  static loadErrorMessage({BuildContext context}) {
+  static loadErrorMessage({@required BuildContext context}) {
     showAlertDialog(
         context: context,
         title: 'Falha no carregamento!',
-        message:
-            'Ocorreu um erro inesperado no carregamento. Por favor, tente novamente.',
+        message: 'Ocorreu um erro inesperado no carregamento. Por favor, tente '
+            'novamente.',
         buttonConfirmationLabel: 'ok');
   }
 
-
+  /// [AlertDialog] de erro no carregamento.
+  static serverNoConnectionErrorMessage({@required BuildContext context}) {
+    showAlertDialog(
+        context: context,
+        title: 'Connection timed out',
+        message: 'Ocorreu um erro inesperado na comunicação com o servidor. Por'
+            ' favor, reinicie o aplicativo e certifique-se de executar no '
+            'terminal (estando no diretório do JSON server) o comando de '
+            'iniciar o JSON server (json-server --watch salgadar.json).',
+        buttonConfirmationLabel: 'ok');
+  }
 }

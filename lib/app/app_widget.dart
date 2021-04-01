@@ -1,6 +1,6 @@
+import 'package:builders/builders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:salgadar_app/app/modules/splash_screen/splash_screen_module.dart';
 
 import 'controllers/user_settings_controller.dart';
 import 'shared/themes/app_themes.dart';
@@ -19,11 +19,8 @@ class _AppWidgetState extends State<AppWidget> {
         title: "Salgadar App",
         theme: ThemeCollection.getAppTheme(),
         darkTheme: ThemeCollection.darkTheme(),
-        initialRoute: SplashScreenModule.routeName,
-        navigatorKey: Modular.navigatorKey,
-        onGenerateRoute: Modular.generateRoute,
         debugShowCheckedModeBanner: false,
-      );
+      ).modular();
     });
   }
 }

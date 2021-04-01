@@ -6,39 +6,39 @@ import 'package:salgadar_app/app/modules/user_purchase/pages/detailed_purchase_p
 
 import 'splash_screen_controller.dart';
 
-class SplashScreenModule extends ChildModule {
+class SplashScreenModule extends Module {
   @override
-  List<Bind> get binds => [
-        Bind((i) => SplashScreenController()),
-      ];
+  final List<Bind> binds = [
+    Bind.singleton((i) => SplashScreenController()),
+  ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(
-          Modular.initialRoute,
-          child: (_, args) => SplashScreenPage(),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-        ModularRouter(
-          SignUpPage.routeName,
-          child: (_, args) => SignUpPage(user: args.data.user),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-        ModularRouter(
-          CartPage.routeName,
-          child: (_, args) => CartPage(),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-        ModularRouter(
-          DetailedPurchasePage.routeName,
-          child: (_, args) => DetailedPurchasePage(
-            purchase: args.data.purchase,
-            key: args.data.key,
-          ),
-          transition: TransitionType.leftToRightWithFade,
-        ),
-      ];
+  final List<ModularRoute> routes = [
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) => SplashScreenPage(),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+    ChildRoute(
+      SignUpPage.routeName,
+      child: (_, args) => SignUpPage(user: args.data.user),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+    ChildRoute(
+      CartPage.routeName,
+      child: (_, args) => CartPage(),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+    ChildRoute(
+      DetailedPurchasePage.routeName,
+      child: (_, args) => DetailedPurchasePage(
+        purchase: args.data.purchase,
+        key: args.data.key,
+      ),
+      transition: TransitionType.leftToRightWithFade,
+    ),
+  ];
 
-  static Inject get to => Inject<SplashScreenModule>.of();
-  static const routeName = '/splash';
+  /// A rota inicial deve ser '/' com o modular.
+  static const routeName = '/';
 }

@@ -1,3 +1,4 @@
+import 'package:builders/builders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -6,6 +7,7 @@ import 'package:salgadar_app/app/modules/home/components/cart_item_widget.dart';
 import 'package:salgadar_app/app/shared/utils/math_utils.dart';
 
 import '../home_controller.dart';
+
 
 class CartPage extends StatefulWidget {
   static const routeName = '/cartPage';
@@ -91,14 +93,15 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
             ListTile(
-                title: ElevatedButton(
-                    child: Text("Finalizar compra!"),
-                    onPressed: cartController.userCart.items.isNotEmpty
-                        ? () async {
-                            await homeController.finalizePurchase(
-                                context: context);
-                          }
-                        : null)),
+              title: ElevatedButton(
+                onPressed: cartController.userCart.items.isNotEmpty
+                    ? () async {
+                        await homeController.finalizePurchase(context: context);
+                      }
+                    : null,
+                child: Text("Finalizar compra!"),
+              ),
+            ),
           ],
         );
       },

@@ -20,20 +20,25 @@ class SplashScreenController {
     final userSettingsController = Modular.get<UserSettingsController>();
 
     // Inicializacoes
-    final hasInternet = await ConnectivityUtils.hasInternetConnectivity();
-    if (hasInternet) {
-      //await PreconfigureSalgadar.cacheAllInSQLite();
-      await PreconfigureSalgadar.cacheItemsInSQLite();
-    }
-    await userController.loadLastLoggedUser();
-    await itemController.initializeItems(context: context);
-    await cartController.initializeCart();
-    await userSettingsController.initializeUserSettings();
+    final hasServerConnection =
+        await ConnectivityUtils.hasServerConnectivity(context: context);
 
-    if (userController.loggedUser != null) {
-      await Modular.to.pushReplacementNamed(HomeModule.routeName);
-    } else {
-      await Modular.to.pushReplacementNamed(LoginModule.routeName);
+    if (hasServerConnection) {
+      final hasInternet = await ConnectivityUtils.hasInternetConnectivity();
+      if (hasInternet) {
+        //await PreconfigureSalgadar.cacheAllInSQLite();
+        await PreconfigureSalgadar.cacheItemsInSQLite();
+      }
+      await userController.loadLastLoggedUser();
+      await itemController.initializeItems(context: context);
+      await cartController.initializeCart();
+      await userSettingsController.initializeUserSettings();
+
+      if (userController.loggedUser != null) {
+        await Modular.to.pushReplacementNamed(HomeModule.routeName);
+      } else {
+        await Modular.to.pushReplacementNamed(LoginModule.routeName);
+      }
     }
   }
 }
